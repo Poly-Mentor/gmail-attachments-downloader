@@ -520,20 +520,20 @@ The project consists of two main Python files:
 
 To run the script, use the following command:
 ```bash
-python gmail.py --topic "your_topic_here" --unread-only --overwrite -t "path/to/downloads" -c "path/to/credentials_folder" --delete
+python gmail.py --topic "your_topic_here" --unread-only --overwrite --target-path "path/to/downloads" --credentials-folder "path/to/credentials_folder" --delete
 ```
 
 #### Command-Line Arguments:
-- `--topic`: Specify the topic to search for in emails (default: `saveit`).
-- `--unread-only`: Search only unread emails.
-- `--overwrite`: Overwrite existing files if they already exist.
-- `-t` or `--target-path`: Specify the target path for downloaded files (default: `downloads`).
+- `-t` or `--topic`: Specify the topic to search for in emails (default: `saveit`).
+- `-u` or `--unread-only`: Search only unread emails.
+- `-o` or `--overwrite`: Overwrite existing files if they already exist.
+- `-p` or `--target-path`: Specify the target path for downloaded files (default: `downloads`).
 - `-c` or `--credentials-folder`: Specify the path to the folder containing `credentials.json` and `token.pickle`.
 - `-d` or `--delete`: Delete emails after successful attachment download. (deleting is not performed when file already exists and there is no `--overwrite` argument set)
 
 #### Example:
 ```bash
-python gmail.py --topic "invoice" --unread-only --overwrite -t "path/to/downloads" -c "path/to/credentials_folder" --delete
+python gmail.py --topic "invoice" --unread-only --overwrite --target-path "path/to/downloads" --credentials-folder "path/to/credentials_folder" --delete
 ```
 
 ## Summary
