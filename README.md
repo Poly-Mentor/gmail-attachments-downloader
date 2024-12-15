@@ -81,7 +81,7 @@ I'll provide you with the code and instructions to access Gmail's inbox using Py
 </span><span>    </span><span class="token">else</span><span class="token">:</span><span>
 </span><span>        </span><span class="token">print</span><span class="token">(</span><span class="token">'Messages:'</span><span class="token">)</span><span>
 </span><span>        </span><span class="token">for</span><span> message </span><span class="token">in</span><span> messages</span><span class="token">[</span><span class="token">:</span><span class="token">10</span><span class="token">]</span><span class="token">:</span><span>  </span><span class="token"># Get first 10 messages</span><span>
-</span><span>            msg </span><span class="token">=</span><span> service</span><span class="token">.</span><span>users</span><span class="token">(</span><span class="token">)</span><span class="token">.</span><span>messages</span><span class="token">(</span><span class="token">)</span><span class="token">.</span><span>get</span><span class="token">(</span><span>userId</span><span class="token">=</span><span class="token">'me'</span><span class="token">,</span><span> </span><span class="token">id</span><span class="token">=</span><span>message</span><span class="token">[</span><span class="token">'id'</span><span class="token">]</span><span class="token">)</span><span class="token">.</span><span>execute</span><span class="token">(</span><span class="token">)</span><span>
+</span><span>            msg </span><span class="token">=</span><span> service</span><span class="token">.</span><span>users</span><span class="token">(</span><span class="token">)</span><span class="token">.</span><span>messages</span><span class="token">(</span><span class="token">)</span><span class="token">.</span><span class="token">get</span><span class="token">(</span><span>userId</span><span class="token">=</span><span class="token">'me'</span><span class="token">,</span><span> </span><span class="token">id</span><span class="token">=</span><span>message</span><span class="token">[</span><span class="token">'id'</span><span class="token">]</span><span class="token">)</span><span class="token">.</span><span>execute</span><span class="token">(</span><span class="token">)</span><span>
 </span><span>            </span><span class="token"># Get the subject from headers</span><span>
 </span><span>            subject </span><span class="token">=</span><span> </span><span class="token">''</span><span>
 </span><span>            </span><span class="token">for</span><span> header </span><span class="token">in</span><span> msg</span><span class="token">[</span><span class="token">'payload'</span><span class="token">]</span><span class="token">[</span><span class="token">'headers'</span><span class="token">]</span><span class="token">:</span><span>
@@ -160,8 +160,8 @@ Command output
 
 *(37 lines above hidden)*
 
-<pre><div><div class="relative -mb-[1px] flex flex-row items-center justify-between rounded-t border border-gray-700 px-2 py-0.5"><div class="absolute inset-0 bg-gray-500 opacity-20"></div><div class="font-sans text-sm text-ide-text-color">Stdout</div><div><button data-tooltip="Copied!" class="relative z-10 rounded px-2 py-1 text-xs whitespace-nowrap text-ide-text-color font-sans hover:bg-gray-500/10 cursor-pointer disabled:cursor-not-allowed after:absolute after:-bottom-1 after:left-2/4 after:-translate-x-1/2 after:translate-y-full after:rounded after:bg-black after:px-1 after:py-0.5 after:text-xs after:text-white after:opacity-0 transition-opacity after:duration-200 after:content-[attr(data-tooltip)]">Copy</button><button data-tooltip="Inserted!" class="relative z-10 rounded px-2 py-1 text-xs whitespace-nowrap text-ide-text-color font-sans hover:bg-gray-500/10 cursor-pointer disabled:cursor-not-allowed after:absolute after:-bottom-1 after:left-2/4 after:-translate-x-1/2 after:translate-y-full after:rounded after:bg-black after:px-1 after:py-0.5 after:text-xs after:text-white after:opacity-0 transition-opacity after:duration-200 after:content-[attr(data-tooltip)]">Insert</button></div></div><div class="language-Stdout max-h-[500px] overflow-y-auto relative box-border overflow-hidden rounded-[0.25em] border border-gray-700" aria-label="highlighted-code-language-Stdout max-h-[500px] overflow-y-auto"><div class="w-full overflow-x-auto"><div><code><span>Requirement already satisfied: certifi>=2017.4.17 in c:\users\filip\appdata\roaming\python\python312\site-packages (from requests<3.0.0.dev0,>=2.18.0->google-api-core!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0,<3.0.0.dev0,>=1.31.5->google-api-python-client>=2.0.0->-r requirements.txt (line 3)) (2024.2.2)
-</span>Downloading google_auth_oauthlib-1.2.1-py2.py3-none-any.whl (24 kB)
+Requirement already satisfied: certifi>=2017.4.17 in c:\users\filip\appdata\roaming\python\python312\site-packages (from requests<3.0.0.dev0,>=2.18.0->google-api-core!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0,<3.0.0.dev0,>=1.31.5->google-api-python-client>=2.0.0->-r requirements.txt (line 3)) (2024.2.2)
+Downloading google_auth_oauthlib-1.2.1-py2.py3-none-any.whl (24 kB)
 Downloading google_auth_httplib2-0.2.0-py2.py3-none-any.whl (9.3 kB)
 Downloading google_api_python_client-2.155.0-py2.py3-none-any.whl (12.7 MB)
    ---------------------------------------- 12.7/12.7 MB 3.0 MB/s eta 0:00:00
@@ -198,7 +198,9 @@ I've set up everything you need to access your Gmail inbox. Here are the next st
 
 Once you have the `credentials.json` file in place, you can run the script:
 
-<pre><div><div class="relative -mb-[1px] flex flex-row items-center justify-between rounded-t border border-gray-700 px-2 py-0.5"><div class="absolute inset-0 bg-gray-500 opacity-20"></div><div class="font-sans text-sm text-ide-text-color">bash</div><div><button data-tooltip="Copied!" class="relative z-10 rounded px-2 py-1 text-xs whitespace-nowrap text-ide-text-color font-sans hover:bg-gray-500/10 cursor-pointer disabled:cursor-not-allowed after:absolute after:-bottom-1 after:left-2/4 after:-translate-x-1/2 after:translate-y-full after:rounded after:bg-black after:px-1 after:py-0.5 after:text-xs after:text-white after:opacity-0 transition-opacity after:duration-200 after:content-[attr(data-tooltip)]">Copy</button><button data-tooltip="Inserted!" class="relative z-10 rounded px-2 py-1 text-xs whitespace-nowrap text-ide-text-color font-sans hover:bg-gray-500/10 cursor-pointer disabled:cursor-not-allowed after:absolute after:-bottom-1 after:left-2/4 after:-translate-x-1/2 after:translate-y-full after:rounded after:bg-black after:px-1 after:py-0.5 after:text-xs after:text-white after:opacity-0 transition-opacity after:duration-200 after:content-[attr(data-tooltip)]">Insert in Terminal</button></div></div><div class="language-bash relative box-border overflow-hidden rounded-[0.25em] border border-gray-700" aria-label="highlighted-code-language-bash"><div class="w-full overflow-x-auto"><div><code><span>python gmail_reader.py</span></code></div></div></div></div></pre>
+```bash
+python gmail_reader.py
+```
 
 The first time you run it, it will:
 
@@ -321,7 +323,7 @@ I've created a comprehensive Jupyter Notebook named [gmail_api_examples.ipynb](c
    * Displaying the last 5 emails with all details
 3. **Attachments Section**
    * Listing attachments with their MIME types
-   * Downloading attachments to a local 'downloads' folder
+   * Downloading attachments to a predefined path
    * Example usage with the first email that has attachments
 
 Key features of the notebook:
@@ -423,74 +425,6 @@ README.md
 c:\Users\filip\Documents\dev\python-gmail-api-bot
 +413 -2
 
-executing last cell of @gmail_api_examples.ipynb downloads the attachment but gives an error:
-Insufficient Permission
-
-The "Insufficient Permission" error typically occurs when the OAuth 2.0 credentials do not have the necessary scopes to perform the requested action, such as downloading attachments.
-
-To resolve this issue, you'll need to ensure that the correct scopes are set up when obtaining the credentials. Here's how you can update the scopes and refresh your authentication:
-
-Update Scopes: Make sure that the scope you are using includes permissions for accessing attachments. The existing scope https://www.googleapis.com/auth/gmail.readonly is generally sufficient for reading emails and attachments, but if you are modifying or marking emails as read, you may need to use https://www.googleapis.com/auth/gmail.modify.
-Re-authenticate: After updating the scopes, you need to delete the existing token.pickle file to force the application to re-authenticate with the new permissions.
-Modify the Code: Update the SCOPES variable in your notebook to include the new scope:
-python
-CopyInsert
-SCOPES = ['https://www.googleapis.com/auth/gmail.modify']
-Delete the Token: Manually delete the token.pickle file from your working directory.
-Run the Notebook Again: After making these changes, run the notebook again. The first time you run it, it will prompt you to log in and grant the new permissions.
-Example Code Update
-Here’s how you can modify the relevant part of your notebook:
-
-python
-CopyInsert
-Update the SCOPES
-SCOPES = ['https://www.googleapis.com/auth/gmail.modify']
-
-```python
-def get_gmail_service():
-    # ... existing code ...
-```
-
-After making these changes, try running the last cell again to see if the issue is resolved. If you continue to face issues, please let me know!
-
-### Me
-
-update @gmail_api_examples.ipynb accordingly
-
-ErrorCascade will not create files that already exist
-It seems I cannot directly modify the existing Jupyter notebook file. Instead, I'll create a new version of the notebook with the updated scopes and instructions. Let's proceed with that.
-
-Created
-gmail_api_examples_v4.ipynb
-+298 -0 0
-Open diff
-
-I've created a new notebook named gmail_api_examples_v4.ipynb that includes the requested function for downloading attachments from selected emails based on specified criteria. Here are the key features of the new function:
-
-Function: download_attachments_from_selected_emails
-Parameters:
-topic (string): The topic string that must be found in the email subject (default is "saveit").
-unread_only (bool): If True, only searches unread messages (default is True).
-Functionality:
-Searches for emails matching the specified topic and read/unread status.
-Downloads all attachments from those emails to a predefined path.
-Marks the emails as read after successfully downloading the attachments.
-Usage
-You can call this function in the notebook to download attachments from emails that meet your criteria. For example:
-
-```python
-CopyInsert
-download_attachments_from_selected_emails(service, topic='Your Topic Here', unread_only=True)
-```
-
-Feel free to open the new notebook and test the function. If you need any additional features or modifications, just let me know!
-----
-### Me
-Your modified files:
-README.md
-c:\Users\filip\Documents\dev\python-gmail-api-bot
-+78 -8
-
 create new gmail-attachments-dl.py script basing on @gmail_api_examples.ipynb
 ----
 I'll create a new Python script named gmail-attachments-dl.py based on the functionality outlined in the gmail_api_examples.ipynb notebook. This script will include the following features:
@@ -521,6 +455,25 @@ You can modify the topic parameter in the script to specify which emails to sear
 
 Feel free to test the script, and let me know if you need any further modifications or additional features!
 </details>
+
+## Usage Instructions for `gmail-attachments-dl.py`
+
+To use the `gmail-attachments-dl.py` script, follow these steps:
+
+1. **Ensure you have the required dependencies installed**: Make sure you have the necessary libraries installed as mentioned in the setup instructions.
+
+2. **Prepare your `credentials.json` file**: Place the `credentials.json` file in the same directory as the script. This file is required for OAuth 2.0 authentication.
+
+3. **Run the script**: Execute the script from the command line using the following command:
+   ```bash
+   python gmail-attachments-dl.py
+   ```
+
+4. **Modify the script if needed**: You can adjust the `topic` parameter in the script to specify which emails to search for. By default, it searches for emails with the subject containing "saveit" and only looks at unread messages.
+
+5. **Follow the authentication prompts**: The first time you run the script, it will open a web browser for you to log in to your Google account and grant permission to access your Gmail. The authentication token will be saved for future use.
+
+After running the script, it will download attachments from the selected emails and mark them as read.
 
 ## Summary
 
