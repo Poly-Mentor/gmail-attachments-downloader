@@ -505,7 +505,7 @@ Feel free to test the script, and let me know if you need any further modificati
 
 To run the script, use the following command:
 ```bash
-python gmail-attachments-dl.py --topic "your_topic_here" --unread-only --overwrite -t "your_target_path_here"
+python gmail-attachments-dl.py --topic "your_topic_here" --unread-only --overwrite -t "your_target_path_here" -c "your_credentials_folder"
 ```
 
 #### Command-Line Arguments:
@@ -513,10 +513,11 @@ python gmail-attachments-dl.py --topic "your_topic_here" --unread-only --overwri
 - `--unread-only`: Search only unread emails.
 - `--overwrite`: Overwrite existing files if they already exist.
 - `-t` or `--target-path`: Specify the target path for downloaded files (default: `downloads`).
+- `-c` or `--credentials-folder`: Specify the path to the folder containing `credentials.json` and `token.pickle`.
 
 #### Example:
 ```bash
-python gmail-attachments-dl.py --topic "invoice" --unread-only --overwrite -t "C:/Users/filip/Downloads"
+python gmail-attachments-dl.py --topic "invoice" --unread-only --overwrite -t "path/to/downloads" -c "path/to/credentials_folder"
 ```
 ## Summary
 

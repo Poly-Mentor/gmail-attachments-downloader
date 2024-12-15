@@ -14,17 +14,20 @@ SCOPES = ['https://www.googleapis.com/auth/gmail.modify']
 def get_gmail_service():
     """Get authenticated Gmail API service instance."""
     creds = None
-    if os.path.exists('token.pickle'):
-        with open('token.pickle', 'rb') as token:
+    creds_path = os.path.join(args.credentials_folder, 'credentials.json')
+    token_path = os.path.join(args.credentials_folder, 'token.pickle')
+
+    if os.path.exists(token_path):
+        with open(token_path, 'rb') as token:
             creds = pickle.load(token)
 
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
+            flow = InstalledAppFlow.from_client_secrets_file(creds_path, SCOPES)
             creds = flow.run_local_server(port=0)
-        with open('token.pickle', 'wb') as token:
+        with open(token_path, 'wb') as token:
             pickle.dump(creds, token)
 
     return build('gmail', 'v1', credentials=creds)
@@ -109,6 +112,7 @@ if __name__ == '__main__':
     parser.add_argument('--unread-only', action='store_true', help='Search only unread emails.')
     parser.add_argument('--overwrite', action='store_true', help='Overwrite existing files.')
     parser.add_argument('-t', '--target-path', default='downloads', help='Target path for downloaded files.')
+    parser.add_argument('-c', '--credentials-folder', default='.', help='Path to the folder containing credentials.json and token.pickle.')
     args = parser.parse_args()
 
     service = get_gmail_service()
