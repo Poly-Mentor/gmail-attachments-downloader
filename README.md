@@ -13,6 +13,9 @@ I have zero experience in using Google's API. I thougt it would be a good test c
 [Codeium&#39;s Windsurf code editor](https://codeium.com/windsurfhttps:/)
 
 ## Workflow log
+
+>This log covers only beginning of the process - it's just to show the workflow and possible issues that can arise.
+
 <details>
 ### Me
 
@@ -458,9 +461,21 @@ Feel free to test the script, and let me know if you need any further modificati
 
 ## Usage Instructions
 
-> If you have Jupyter installed, you can familiarize with the code with `gmail_api_examples.ipynb`
+To run the script, use the following command:
+```bash
+python gmail-attachments-dl.py --topic "your_topic_here" --unread-only --overwrite -t "your_target_path_here"
+```
 
-To use the `gmail-attachments-dl.py` script, follow these steps:
+#### Command-Line Arguments:
+- `--topic`: Specify the topic to search for in emails (default: `saveit`).
+- `--unread-only`: Search only unread emails.
+- `--overwrite`: Overwrite existing files if they already exist.
+- `-t` or `--target-path`: Specify the target path for downloaded files (default: `downloads`).
+
+#### Example:
+```bash
+python gmail-attachments-dl.py --topic "invoice" --unread-only --overwrite -t "C:/Users/filip/Downloads"
+```
 
 1. **Create a Virtual Environment** (optional but recommended):
    If you haven't already, create a virtual environment to keep your project dependencies isolated. Run the following command:

@@ -6,6 +6,7 @@ from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
+import argparse
 
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/gmail.modify']
@@ -28,7 +29,7 @@ def get_gmail_service():
 
     return build('gmail', 'v1', credentials=creds)
 
-def download_attachment(service, message_id, attachment_id, filename):
+def download_attachment(service, message_id, attachment_id, filename, target_path, overwrite=False):
     """Download a specific attachment."""
     attachment = service.users().messages().attachments().get(
         userId='me', messageId=message_id, id=attachment_id
@@ -36,11 +37,14 @@ def download_attachment(service, message_id, attachment_id, filename):
 
     file_data = base64.urlsafe_b64decode(attachment['data'].encode('UTF-8'))
 
-    # Create 'downloads' directory if it doesn't exist
-    if not os.path.exists('downloads'):
-        os.makedirs('downloads')
+    filepath = os.path.join(target_path, filename)
+    if os.path.exists(filepath) and not overwrite:
+        print(f"File {filepath} already exists. Use --overwrite to overwrite.")
+        return None
 
-    filepath = os.path.join('downloads', filename)
+    if not os.path.exists(target_path):
+        os.makedirs(target_path)
+
     with open(filepath, 'wb') as f:
         f.write(file_data)
 
@@ -62,7 +66,7 @@ def get_attachments(service, message_id):
 
     return attachments
 
-def download_attachments_from_selected_emails(service, topic='saveit', unread_only=True):
+def download_attachments_from_selected_emails(service, topic='saveit', unread_only=True, target_path='downloads', overwrite=False):
     """Download attachments from emails matching the topic."""
     query = f'subject:{topic}'
     if unread_only:
@@ -82,9 +86,12 @@ def download_attachments_from_selected_emails(service, topic='saveit', unread_on
                 service,
                 message['id'],
                 attachment['id'],
-                attachment['filename']
+                attachment['filename'],
+                target_path,
+                overwrite
             )
-            print(f"Downloaded {attachment['filename']} to {filepath}")
+            if filepath:
+                print(f"Downloaded {attachment['filename']} to {filepath}")
 
         # Mark message as read
         service.users().messages().modify(
@@ -97,5 +104,12 @@ def download_attachments_from_selected_emails(service, topic='saveit', unread_on
     print('All matching attachments downloaded.')
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Download Gmail attachments based on topic.')
+    parser.add_argument('--topic', default='saveit', help='Topic to search for in emails.')
+    parser.add_argument('--unread-only', action='store_true', help='Search only unread emails.')
+    parser.add_argument('--overwrite', action='store_true', help='Overwrite existing files.')
+    parser.add_argument('-t', '--target-path', default='downloads', help='Target path for downloaded files.')
+    args = parser.parse_args()
+
     service = get_gmail_service()
-    download_attachments_from_selected_emails(service)
+    download_attachments_from_selected_emails(service, args.topic, args.unread_only, args.target_path, args.overwrite)
