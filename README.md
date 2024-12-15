@@ -499,3 +499,6 @@ To use the `gmail-attachments-dl.py` script, follow these steps:
    ```bash
    python gmail-attachments-dl.py
    
+## Summary
+
+AI assistant created all the neccessary code and walked me step by step how to create Oauth token. Usage instructions were generated correctly. Resulting script seems to be fully functional.
