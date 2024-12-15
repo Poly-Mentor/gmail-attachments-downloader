@@ -459,6 +459,21 @@ You can modify the topic parameter in the script to specify which emails to sear
 Feel free to test the script, and let me know if you need any further modifications or additional features!
 </details>
 
+## Project Structure
+
+The project consists of two main Python files:
+
+1. `service_gmail.py`: Contains the `GmailService` class that handles all Gmail API interactions:
+   - Authentication and service initialization
+   - Attachment downloading
+   - Email processing logic
+   - Encapsulated Gmail API functionality
+
+2. `gmail.py`: Main entry point for users:
+   - Command-line interface
+   - Argument parsing
+   - Uses `GmailService` to perform operations
+
 ## Installation
 <details>
 1. **Create a Virtual Environment** (optional but recommended):
@@ -470,7 +485,7 @@ Feel free to test the script, and let me know if you need any further modificati
 
 2. **Activate the Virtual Environment**:
    - On Windows, activate the virtual environment using:
-     ```bash
+```bash
      venv\Scripts\activate
      ```
    - On macOS/Linux, use:
@@ -498,14 +513,14 @@ Feel free to test the script, and let me know if you need any further modificati
 
 6. **Run the script**: Execute the script from the command line using the following command:
    ```bash
-   python gmail-attachments-dl.py
+   python gmail.py
 </details>
 
 ## Usage Instructions
 
 To run the script, use the following command:
 ```bash
-python gmail-attachments-dl.py --topic "your_topic_here" --unread-only --overwrite -t "your_target_path_here" -c "your_credentials_folder"
+python gmail.py --topic "your_topic_here" --unread-only --overwrite -t "path/to/downloads" -c "path/to/credentials_folder"
 ```
 
 #### Command-Line Arguments:
@@ -517,8 +532,9 @@ python gmail-attachments-dl.py --topic "your_topic_here" --unread-only --overwri
 
 #### Example:
 ```bash
-python gmail-attachments-dl.py --topic "invoice" --unread-only --overwrite -t "path/to/downloads" -c "path/to/credentials_folder"
+python gmail.py --topic "invoice" --unread-only --overwrite -t "path/to/downloads" -c "path/to/credentials_folder"
 ```
+
 ## Summary
 
 AI assistant created all the neccessary code and walked me step by step how to create Oauth token. Usage instructions were generated correctly. Resulting script seems to be fully functional.
