@@ -73,7 +73,7 @@ I'll provide you with the code and instructions to access Gmail's inbox using Py
 </span><span>    service </span><span class="token">=</span><span> get_gmail_service</span><span class="token">(</span><span class="token">)</span><span>
 </span>  
 <span>    </span><span class="token"># Call the Gmail API to fetch INBOX</span><span>
-</span><span>    results </span><span class="token">=</span><span> service</span><span class="token">.</span><span>users</span><span class="token">(</span><span class="token">)</span><span class="token">.</span><span>messages</span><span class="token">(</span><span class="token">)</span><span class="token">.</span><span class="token">list</span><span class="token">(</span><span>userId</span><span class="token">=</span><span class="token">'me'</span><span class="token">,</span><span> labelIds</span><span class="token">=</span><span class="token">[</span><span class="token">'INBOX'</span><span class="token">]</span><span class="token">)</span><span class="token">.</span><span>execute</span><span class="token">(</span><span class="token">)</span><span>
+</span><span>    results </span><span class="token">=</span><span> service</span><span class="token">.</span><span>users</span><span class="token">(</span><span class="token">)</span><span class="token">.</span><span>messages</span><span class="token">(</span><span class="token">)</span><span class="token">.</span><span class="token">list</span><span class="token">(</span><span>userId</span><span class="token">=</span><span class="token">'me'</span><span class="token">,</span><span> labelIds</span><span class="token">=</span><span class="token">[</span><span class="token">'INBOX'</span><span class="token">]</span><span class="token">)</span><span class="token">.</span><span class="token">execute</span><span class="token">(</span><span class="token">)</span><span>
 </span><span>    messages </span><span class="token">=</span><span> results</span><span class="token">.</span><span>get</span><span class="token">(</span><span class="token">'messages'</span><span class="token">,</span><span> </span><span class="token">[</span><span class="token">]</span><span class="token">)</span><span>
 </span>
 <span>    </span><span class="token">if</span><span> </span><span class="token">not</span><span> messages</span><span class="token">:</span><span>
@@ -81,7 +81,7 @@ I'll provide you with the code and instructions to access Gmail's inbox using Py
 </span><span>    </span><span class="token">else</span><span class="token">:</span><span>
 </span><span>        </span><span class="token">print</span><span class="token">(</span><span class="token">'Messages:'</span><span class="token">)</span><span>
 </span><span>        </span><span class="token">for</span><span> message </span><span class="token">in</span><span> messages</span><span class="token">[</span><span class="token">:</span><span class="token">10</span><span class="token">]</span><span class="token">:</span><span>  </span><span class="token"># Get first 10 messages</span><span>
-</span><span>            msg </span><span class="token">=</span><span> service</span><span class="token">.</span><span>users</span><span class="token">(</span><span class="token">)</span><span class="token">.</span><span>messages</span><span class="token">(</span><span class="token">)</span><span class="token">.</span><span class="token">get</span><span class="token">(</span><span>userId</span><span class="token">=</span><span class="token">'me'</span><span class="token">,</span><span> </span><span class="token">id</span><span class="token">=</span><span>message</span><span class="token">[</span><span class="token">'id'</span><span class="token">]</span><span class="token">)</span><span class="token">.</span><span>execute</span><span class="token">(</span><span class="token">)</span><span>
+</span><span>            msg </span><span class="token">=</span><span> service</span><span class="token">.</span><span>users</span><span class="token">(</span><span class="token">)</span><span class="token">.</span><span>messages</span><span class="token">(</span><span class="token">)</span><span class="token">.</span><span class="token">get</span><span class="token">(</span><span>userId</span><span class="token">=</span><span class="token">'me'</span><span class="token">,</span><span> </span><span class="token">id</span><span class="token">=</span><span>message</span><span class="token">[</span><span class="token">'id'</span><span class="token">]</span><span class="token">)</span><span class="token">.</span><span class="token">execute</span><span class="token">(</span><span class="token">)</span><span>
 </span><span>            </span><span class="token"># Get the subject from headers</span><span>
 </span><span>            subject </span><span class="token">=</span><span> </span><span class="token">''</span><span>
 </span><span>            </span><span class="token">for</span><span> header </span><span class="token">in</span><span> msg</span><span class="token">[</span><span class="token">'payload'</span><span class="token">]</span><span class="token">[</span><span class="token">'headers'</span><span class="token">]</span><span class="token">:</span><span>
@@ -460,21 +460,42 @@ Feel free to test the script, and let me know if you need any further modificati
 
 To use the `gmail-attachments-dl.py` script, follow these steps:
 
-1. **Ensure you have the required dependencies installed**: Make sure you have the necessary libraries installed as mentioned in the setup instructions.
-
-2. **Prepare your `credentials.json` file**: Place the `credentials.json` file in the same directory as the script. This file is required for OAuth 2.0 authentication.
-
-3. **Run the script**: Execute the script from the command line using the following command:
+1. **Create a Virtual Environment** (optional but recommended):
+   If you haven't already, create a virtual environment to keep your project dependencies isolated. Run the following command:
    ```bash
-   python gmail-attachments-dl.py
+   python -m venv venv
+   ```
+   This will create a directory named `venv` in your project folder.
+
+2. **Activate the Virtual Environment**:
+   - On Windows, activate the virtual environment using:
+     ```bash
+     venv\Scripts\activate
+     ```
+   - On macOS/Linux, use:
+     ```bash
+     source venv/bin/activate
+     ```
+
+3. **Install Dependencies**:
+   If you have a `requirements.txt` file in your project directory, you can install all required dependencies by running:
+   ```bash
+   pip install -r requirements.txt
+   ```
+   If you don't have a `requirements.txt` file, you may need to install the necessary packages individually. For example:
+   ```bash
+   pip install package_name
    ```
 
-4. **Modify the script if needed**: You can adjust the `topic` parameter in the script to specify which emails to search for. By default, it searches for emails with the subject containing "saveit" and only looks at unread messages.
+4. **Verify Installation**:
+   After installation, you can verify that the packages are installed correctly by running:
+   ```bash
+   pip list
+   ```
 
-5. **Follow the authentication prompts**: The first time you run the script, it will open a web browser for you to log in to your Google account and grant permission to access your Gmail. The authentication token will be saved for future use.
+5. **Prepare your `credentials.json` file**: Place the `credentials.json` file in the same directory as the script. This file is required for OAuth 2.0 authentication.
 
-After running the script, it will download attachments from the selected emails and mark them as read.
-
-## Summary
-
-AI assistant created all the neccessary code and walked me step by step how to create Oauth token. Resulting script seems to be fully functional.
+6. **Run the script**: Execute the script from the command line using the following command:
+   ```bash
+   python gmail-attachments-dl.py
+   
