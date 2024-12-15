@@ -459,24 +459,8 @@ You can modify the topic parameter in the script to specify which emails to sear
 Feel free to test the script, and let me know if you need any further modifications or additional features!
 </details>
 
-## Usage Instructions
-
-To run the script, use the following command:
-```bash
-python gmail-attachments-dl.py --topic "your_topic_here" --unread-only --overwrite -t "your_target_path_here"
-```
-
-#### Command-Line Arguments:
-- `--topic`: Specify the topic to search for in emails (default: `saveit`).
-- `--unread-only`: Search only unread emails.
-- `--overwrite`: Overwrite existing files if they already exist.
-- `-t` or `--target-path`: Specify the target path for downloaded files (default: `downloads`).
-
-#### Example:
-```bash
-python gmail-attachments-dl.py --topic "invoice" --unread-only --overwrite -t "C:/Users/filip/Downloads"
-```
-
+## Installation
+<details>
 1. **Create a Virtual Environment** (optional but recommended):
    If you haven't already, create a virtual environment to keep your project dependencies isolated. Run the following command:
    ```bash
@@ -515,7 +499,25 @@ python gmail-attachments-dl.py --topic "invoice" --unread-only --overwrite -t "C
 6. **Run the script**: Execute the script from the command line using the following command:
    ```bash
    python gmail-attachments-dl.py
-   
+</details>
+
+## Usage Instructions
+
+To run the script, use the following command:
+```bash
+python gmail-attachments-dl.py --topic "your_topic_here" --unread-only --overwrite -t "your_target_path_here"
+```
+
+#### Command-Line Arguments:
+- `--topic`: Specify the topic to search for in emails (default: `saveit`).
+- `--unread-only`: Search only unread emails.
+- `--overwrite`: Overwrite existing files if they already exist.
+- `-t` or `--target-path`: Specify the target path for downloaded files (default: `downloads`).
+
+#### Example:
+```bash
+python gmail-attachments-dl.py --topic "invoice" --unread-only --overwrite -t "C:/Users/filip/Downloads"
+```
 ## Summary
 
 AI assistant created all the neccessary code and walked me step by step how to create Oauth token. Usage instructions were generated correctly. Resulting script seems to be fully functional.
