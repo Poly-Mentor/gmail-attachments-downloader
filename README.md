@@ -1,7 +1,7 @@
 # Python Gmail API bot
 
 > ⚠️ Warning ⚠️
-> Code in this repository is mostly AI generated. For me, this project is a test case of using AI-powered code editor *Windsurf*. It may be useful, but it can contain some errors. If you want to learn from it, consider using official Google's API documentation instead.
+> Code in this repository is mostly **AI generated**. For me, this project is a test case of using AI-powered code editor *Windsurf*. It may be useful, but it can contain some errors. If you want to learn from it, consider using official Google's API documentation instead.
 
 ## Project idea
 
@@ -13,7 +13,7 @@ I have zero experience in using Google's API. I thougt it would be a good test c
 [Codeium&#39;s Windsurf code editor](https://codeium.com/windsurfhttps:/)
 
 ## Workflow log
-
+<details>
 ### Me
 
 *How to access gmail's inbox with Python*
@@ -520,7 +520,8 @@ python gmail-attachments-dl.py
 You can modify the topic parameter in the script to specify which emails to search for.
 
 Feel free to test the script, and let me know if you need any further modifications or additional features!
+</details>
 
 ## Summary
 
-AI assistant created all the neccessary code and walked me step by step how to create Oauth token to make this work.
+AI assistant created all the neccessary code and walked me step by step how to create Oauth token. Resulting script seems to be fully functional.
