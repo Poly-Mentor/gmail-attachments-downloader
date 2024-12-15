@@ -456,7 +456,9 @@ You can modify the topic parameter in the script to specify which emails to sear
 Feel free to test the script, and let me know if you need any further modifications or additional features!
 </details>
 
-## Usage Instructions for `gmail-attachments-dl.py`
+## Usage Instructions
+
+> If you have Jupyter installed, you can familiarize with the code with `gmail_api_examples.ipynb`
 
 To use the `gmail-attachments-dl.py` script, follow these steps:
 
