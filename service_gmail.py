@@ -7,7 +7,8 @@ from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
 
 # If modifying these scopes, delete the file token.pickle.
-SCOPES = ['https://www.googleapis.com/auth/gmail.modify']
+SCOPES = ['https://www.googleapis.com/auth/gmail.modify',
+          'https://mail.google.com/']  # Full access to Gmail account, including deletion
 
 class GmailService:
     def __init__(self, credentials_folder='.'):
@@ -72,7 +73,16 @@ class GmailService:
 
         return attachments
 
-    def download_attachments_from_selected_emails(self, topic='saveit', unread_only=True, target_path='downloads', overwrite=False):
+    def delete_message(self, message_id):
+        """Delete a message permanently."""
+        try:
+            self.service.users().messages().delete(userId='me', id=message_id).execute()
+            return True
+        except Exception as e:
+            print(f"Error deleting message {message_id}: {str(e)}")
+            return False
+
+    def download_attachments_from_selected_emails(self, topic='saveit', unread_only=True, target_path='downloads', overwrite=False, delete_after=False):
         """Download attachments from emails matching the topic."""
         query = f'subject:{topic}'
         if unread_only:
@@ -90,7 +100,10 @@ class GmailService:
         for message in messages:
             msg = self.service.users().messages().get(userId='me', id=message['id']).execute()
             attachments = self.get_attachments(message['id'])
-
+            
+            # Track if all attachments were downloaded successfully
+            all_attachments_downloaded = True
+            
             for attachment in attachments:
                 filepath = self.download_attachment(
                     message['id'],
@@ -101,13 +114,20 @@ class GmailService:
                 )
                 if filepath:
                     print(f"Downloaded {attachment['filename']} to {filepath}")
+                else:
+                    all_attachments_downloaded = False
 
-            # Mark message as read
-            self.service.users().messages().modify(
-                userId='me', id=message['id'],
-                body={
-                    'removeLabelIds': ['UNREAD']
-                }
-            ).execute()
+            # Delete message if requested and all attachments were downloaded
+            if delete_after and all_attachments_downloaded:
+                if self.delete_message(message['id']):
+                    print(f"Message deleted successfully")
+            else:
+                # Mark message as read if not deleting
+                self.service.users().messages().modify(
+                    userId='me', id=message['id'],
+                    body={
+                        'removeLabelIds': ['UNREAD']
+                    }
+                ).execute()
 
         print('All matching attachments downloaded.')

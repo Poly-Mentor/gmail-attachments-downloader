@@ -8,6 +8,7 @@ def main():
     parser.add_argument('--overwrite', action='store_true', help='Overwrite existing files.')
     parser.add_argument('-t', '--target-path', default='downloads', help='Target path for downloaded files.')
     parser.add_argument('-c', '--credentials-folder', default='.', help='Path to the folder containing credentials.json and token.pickle.')
+    parser.add_argument('-d', '--delete', action='store_true', help='Delete emails after successful attachment download.')
     args = parser.parse_args()
 
     # Initialize Gmail service
@@ -18,7 +19,8 @@ def main():
         topic=args.topic,
         unread_only=args.unread_only,
         target_path=args.target_path,
-        overwrite=args.overwrite
+        overwrite=args.overwrite,
+        delete_after=args.delete
     )
 
 if __name__ == '__main__':
