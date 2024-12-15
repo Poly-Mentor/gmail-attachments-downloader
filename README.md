@@ -454,25 +454,7 @@ python gmail-attachments-dl.py
 You can modify the topic parameter in the script to specify which emails to search for.
 
 Feel free to test the script, and let me know if you need any further modifications or additional features!
-
-## Usage Instructions for `gmail-attachments-dl.py`
-
-To use the `gmail-attachments-dl.py` script, follow these steps:
-
-1. **Ensure you have the required dependencies installed**: Make sure you have the necessary libraries installed as mentioned in the setup instructions.
-
-2. **Prepare your `credentials.json` file**: Place the `credentials.json` file in the same directory as the script. This file is required for OAuth 2.0 authentication.
-
-3. **Run the script**: Execute the script from the command line using the following command:
-   ```bash
-   python gmail-attachments-dl.py
-   ```
-
-4. **Modify the script if needed**: You can adjust the `topic` parameter in the script to specify which emails to search for. By default, it searches for emails with the subject containing "saveit" and only looks at unread messages.
-
-5. **Follow the authentication prompts**: The first time you run the script, it will open a web browser for you to log in to your Google account and grant permission to access your Gmail. The authentication token will be saved for future use.
-
-After running the script, it will download attachments from the selected emails and mark them as read.
+</details>
 
 ## Usage Instructions for `gmail-attachments-dl.py`
 
